@@ -1,0 +1,54 @@
+node{
+
+checkout scm;
+def prop=readProperties  file: 'Properties/propertiesfile.txt'
+
+stage('checkout')
+
+{
+echo "${prop}"
+def giturl=prop.GIT_URL
+echo "giturl=${giturl}"
+git "${giturl}"
+
+}
+
+stage ('build'){
+
+def buildcmd=prop.MAVEN_CMD
+echo "${buildcmd}"
+sh "${buildcmd}"
+
+}
+
+stage('code analysis'){
+    echo "${prop}"
+    def mvncmd=prop.MAVEN_SONAR_CMD
+    def sonarurl=prop.SONAR_URL
+    def url=mvncmd+sonarurl
+    echo "${url}"
+    sh "${url}"
+}
+stage('Artifactory upload')
+{
+def server = Artifactory.newServer  url: "http://my89162dns.eastus2.cloudapp.azure.com:8081/artifactory",username:'admin',password:'password'
+def uploadSpec = """{
+ 	
+"files":[
+{
+"pattern":"target/*.war",
+"target":"hello/"
+}
+]
+}"""
+server.upload(uploadSpec)
+}
+stage('deployment'){
+def src=prop.SRC_DEPLOY_LOC
+def dest=prop.DEST_DEPLOY_LOC
+def deployCmd="cp "+"${src}"+" "+"${dest}"
+echo "${deployCmd}"
+sh "${deployCmd}"
+}
+
+}

@@ -4,6 +4,4 @@ MAVEN_SONAR_CMD=mvn sonar:sonar -Dsonar.host.url=
 SONAR_URL=http://my89162dns.eastus2.cloudapp.azure.com:9000/
 SRC_DEPLOY_LOC=target/*.war
 DEST_DEPLOY_LOC=/opt/tomcat/apache-tomcat-8.5.35/webapps/
-ARTIFACT_URL=http://my89162dns.eastus2.cloudapp.azure.com:8081/artifactory
-ARTIFACT_USERNAME=admin
-ARTIFACT_PASSWD=password
+ARTIFACT_ID=Artifact-1

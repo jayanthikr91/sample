@@ -31,7 +31,7 @@ stage('code analysis'){
 }
 stage('Artifactory upload')
 {
-def server = Artifactory.server ${prop.ARTIFACT_ID}
+def server = Artifactory.server "${prop.ARTIFACT_ID}"
 def uploadSpec = """{
  	
 "files":[

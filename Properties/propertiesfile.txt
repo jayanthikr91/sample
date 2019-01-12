@@ -1,5 +1,5 @@
 GIT_URL=https://github.com/jayanthikr91/Assignment2.git
-MAVEN_CMD=mvn clean install -Dv=${BUILD_NUMBER}
+MAVEN_CMD=mvn clean install -Dversion=
 MAVEN_SONAR_CMD=mvn sonar:sonar -Dsonar.host.url=
 SONAR_URL=http://my89162dns.eastus2.cloudapp.azure.com:9000/
 SRC_DEPLOY_LOC=target/*.war

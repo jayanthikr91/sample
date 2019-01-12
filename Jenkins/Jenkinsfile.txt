@@ -15,7 +15,7 @@ git "${giturl}"
 
 stage ('build'){
 
-def buildcmd=prop.MAVEN_CMD
+def buildcmd=prop.MAVEN_CMD+"${BUILD_NUMBER}"
 echo "${buildcmd}"
 sh "${buildcmd}"
 

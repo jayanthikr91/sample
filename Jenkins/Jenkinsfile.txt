@@ -2,7 +2,7 @@ node{
 
 checkout scm;
 def prop=readProperties  file: 'Properties/propertiesfile.txt'
-
+try{
 stage('checkout')
 
 {
@@ -52,5 +52,11 @@ sh "${deployCmd}"
 }
 stage('email'){
     emailext body: 'Build is successful', subject: 'email notification', to: 'jayanthikr91@gmail.com'
+  }
+  }
+  catch(Exception e){
+  stage('email'){
+    emailext body: 'Build is unsuccessful', subject: 'email notification', to: 'jayanthikr91@gmail.com'
+  }
   }
 }

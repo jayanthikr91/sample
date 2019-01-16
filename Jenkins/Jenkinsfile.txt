@@ -15,7 +15,7 @@ git "${giturl}"
 
 stage ('build'){
 
-def buildcmd=prop.MAVEN_CMD+"${BUILD_NUMBER}"
+def buildcmd="mvn clean install -Dv=${BUILD_NUMBER}"
 echo "${buildcmd}"
 sh "${buildcmd}"
 

@@ -3,5 +3,5 @@ MAVEN_CMD=mvn clean install -Dv=
 MAVEN_SONAR_CMD=mvn sonar:sonar -Dsonar.host.url=
 SONAR_URL=http://my89162dns.eastus2.cloudapp.azure.com:9000/
 SRC_DEPLOY_LOC=target/*.war
-DEST_DEPLOY_LOC=/opt/tomcat/apache-tomcat-8.5.35/webapps/
+DEST_DEPLOY_LOC=ubuntu@ec2-3-88-162-35.compute-1.amazonaws.com:/var/lib/tomcat8/webapps
 ARTIFACT_ID=Artifact-1

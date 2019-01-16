@@ -50,4 +50,7 @@ def deployCmd="scp "+"${src}"+" "+"${dest}"
 echo "${deployCmd}"
 sh "${deployCmd}"
 }
+stage('email'){
+    emailext body: 'Build is successful', subject: 'email notification', to: 'jayanthikr91@gmail.com'
+  }
 }

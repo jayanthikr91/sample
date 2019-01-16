@@ -44,8 +44,10 @@ def uploadSpec = """{
 server.upload(uploadSpec)
 }
 stage ('Final deploy'){
-
-sh 'scp  /var/lib/jenkins/workspace/PipelineDemo/target/*.war  ubuntu@ec2-3-88-162-35.compute-1.amazonaws.com:/var/lib/tomcat8/webapps'
+def src=prop.SRC_DEPLOY_LOC
+def dest=prop.DEST_DEPLOY_LOC
+def deployCmd="scp "+"${src}"+" "+"${dest}"
+echo "${deployCmd}"
+sh "${deployCmd}"
 }
-
 }

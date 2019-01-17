@@ -2,8 +2,8 @@ node{
 
 checkout scm;
 def prop=readProperties  file: 'Properties/propertiesfile.txt'
-def pom=readMavenPom  file: 'pom.xml'
 
+def pom
 try{
 stage('checkout')
 
@@ -12,6 +12,7 @@ echo "${prop}"
 def giturl=prop.GIT_URL
 echo "giturl=${giturl}"
 git "${giturl}"
+pom=readMavenPom  file: 'pom.xml'
 }
 
 stage ('build'){

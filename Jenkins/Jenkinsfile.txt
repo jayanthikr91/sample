@@ -44,13 +44,7 @@ def uploadSpec = """{
 }"""
 server.upload(uploadSpec)
 }
-stage ('Final deploy'){
-def src=prop.SRC_DEPLOY_LOC
-def dest=prop.DEST_DEPLOY_LOC
-def deployCmd="scp "+"${src}"+" "+"${dest}"
-echo "${deployCmd}"
-sh "${deployCmd}"
-}
+
 stage('email'){
     emailext body: 'Build is successful', subject: 'email notification', to: 'jayanthikr91@gmail.com'
   }

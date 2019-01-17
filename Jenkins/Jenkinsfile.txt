@@ -10,12 +10,14 @@ echo "${prop}"
 def giturl=prop.GIT_URL
 echo "giturl=${giturl}"
 git "${giturl}"
-
+def pom=readMavenPom  file: 'pom.xml'
+def artifactId=pom.artifactId
+echo "${artifactId}"
 }
 
 stage ('build'){
 
-def buildcmd="mvn clean install -Dv=${BUILD_NUMBER}"
+def buildcmd="mvn clean install"
 echo "${buildcmd}"
 sh "${buildcmd}"
 
@@ -37,7 +39,7 @@ def uploadSpec = """{
 "files":[
 {
 "pattern":"target/*.war",
-"target":"hello/"
+"target":"hello/${}"
 }
 ]
 }"""

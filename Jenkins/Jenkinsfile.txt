@@ -2,6 +2,8 @@ node{
 
 checkout scm;
 def prop=readProperties  file: 'Properties/propertiesfile.txt'
+def pom=readMavenPom  file: 'pom.xml'
+
 try{
 stage('checkout')
 
@@ -10,9 +12,6 @@ echo "${prop}"
 def giturl=prop.GIT_URL
 echo "giturl=${giturl}"
 git "${giturl}"
-def pom=readMavenPom  file: 'pom.xml'
-def artifactId=pom.artifactId
-echo "${artifactId}"
 }
 
 stage ('build'){
@@ -39,7 +38,7 @@ def uploadSpec = """{
 "files":[
 {
 "pattern":"target/*.war",
-"target":"hello/${}"
+"target":"hello/${pom.artifactId}/${pom.version}.${BUILD_NUMBER}"
 }
 ]
 }"""
